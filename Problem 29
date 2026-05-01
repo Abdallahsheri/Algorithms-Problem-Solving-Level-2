@@ -1,0 +1,80 @@
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+//Problem 29 Copy Only Prime Numbers.
+
+enum enPrimeNotPrime { Prime = 1, NotPrime = 2 };
+
+enPrimeNotPrime ChecKPrime(int Number)
+{
+	if (Number < 2)
+		return NotPrime;
+
+	for (int i = 2; i <= sqrt(Number); i++)
+	{
+		if (Number % i == 0)
+			return NotPrime;
+	}
+	return Prime;
+}
+
+int RandomNumber(int From, int To)
+{
+	return rand() % (To - From + 1) + From;
+}
+
+void FillArray(int Arr[100], int& ArrLength)
+{
+	cout << "Please enter Number Of Elements: ";
+	cin >> ArrLength;
+
+	for (int i = 0; i < ArrLength; i++)
+	{
+		Arr[i] = RandomNumber(1, 100);
+	}
+}
+
+void CopyOnlyPrimeNumbers(int ArrSource[100], int ArrDestination[100], int ArrLength, int& Arr2Length)
+{
+	int Counter = 0;
+
+	for (int i = 0; i < ArrLength; i++)
+	{
+		if (ChecKPrime(ArrSource[i]) == Prime)
+		{
+			ArrDestination[Counter] = ArrSource[i];
+			Counter++;
+		}
+	}
+	Arr2Length = Counter;
+}
+
+void PrintArray(int arr[100], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << " ";
+
+	cout << "\n";
+}
+
+int main()
+{
+	srand((unsigned)time(NULL));
+
+	int Arr[100], ArrLength;
+	FillArray(Arr, ArrLength);
+
+	int Arr2[100], Arr2Length = 0;
+	CopyOnlyPrimeNumbers(Arr, Arr2, ArrLength, Arr2Length);
+
+	cout << "\nArray 1 elements:\n";
+	PrintArray(Arr, ArrLength);
+
+	cout << "\nPrime Numbers in Array2:\n";
+	PrintArray(Arr2, Arr2Length);
+
+	return 0;
+}
