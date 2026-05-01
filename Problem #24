@@ -1,0 +1,63 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <cmath>
+#include <cstdlib>
+using namespace std;
+
+//Problem #24 Max Of Random Array.
+
+int RandomNumber(int From, int To)
+{
+	int RandNum = rand() % (To - From + 1) + From;
+	return RandNum;
+}
+void FillArrayWithRandomNumbers(int Arr[100], int& ArrLength)
+{
+	cout << "Please enter Number Of Elements : " << endl;
+	cin >> ArrLength;
+	
+	for (int i = 0; i < ArrLength; i++)
+	{
+		Arr[i] = RandomNumber(1, 100);
+	}
+
+}
+
+void PrintArray(int Arr[100], int ArrLength)
+{
+	for (int i = 0; i < ArrLength; i++)
+	{
+		cout << Arr[i] << " ";
+	}
+	cout << endl;
+}
+
+int MaxNumberInArray(int Arr[100], int ArrLength)
+{
+	int Max = 0;
+	for (int i = 0; i < ArrLength; i++)
+	{
+		if (Arr[i] > Max)
+		{
+			Max = Arr[i];
+		}
+	}
+	return Max;
+}
+
+int main() {
+	
+	srand((unsigned)time(NULL));
+	
+	int Arr[100];
+	int ArrLength;
+	FillArrayWithRandomNumbers(Arr, ArrLength);
+
+	cout << "Array Elements : " << endl;
+	PrintArray(Arr, ArrLength);
+
+	cout << "The Max Number In The Array Is : " << endl;
+	cout << MaxNumberInArray(Arr, ArrLength) << endl;
+    return 0;
+}
