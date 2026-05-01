@@ -1,0 +1,72 @@
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+//Problem 30 Sum Of 2 Arrays To A Third One.//
+
+int RandomNumber(int From,int To)
+{
+	int RandNum = rand() % (To - From + 1) + From;
+	return RandNum;
+}
+
+int ReadPositiveNumber(string Message)
+{
+	int Number = 0;
+
+	do
+	{
+		cout << Message << endl;
+		cin >> Number;
+
+	} while (Number <= 0);
+	return Number;
+
+}
+void FillArrayWithRandomNumbers(int Arr[100], int ArrLength)
+{
+	for (int i = 0; i < ArrLength; i++)
+	{
+		Arr[i] = RandomNumber(1,100);
+	}
+}
+
+void SumOf2Arrays(int Arr1[100], int Arr2[100], int ArrSum[100], int ArrLength)
+{
+	for (int i = 0; i < ArrLength; i++)
+	{
+		ArrSum[i] = Arr1[i] + Arr2[i];
+	}
+}
+
+void PrintArray(int Arr[100], int ArrLength)
+{
+	for (int i = 0; i < ArrLength; i++)
+	{
+		cout << Arr[i] << " ";
+	}
+	cout << endl;
+}
+
+
+int main()
+{
+	srand((unsigned)time(NULL));
+
+	int Arr1[100], Arr2[100], ArrSum[100];
+
+	int arrLength = ReadPositiveNumber("How many elements ?\n");
+	FillArrayWithRandomNumbers(Arr1, arrLength);
+	FillArrayWithRandomNumbers(Arr2, arrLength);
+	SumOf2Arrays(Arr1, Arr2, ArrSum, arrLength);
+	cout << "\nArray 1 elements:\n";
+	PrintArray(Arr1, arrLength);
+	cout << "\nArray 2 elements:\n";
+	PrintArray(Arr2, arrLength);
+	cout << "\nSum of array1 and array2 elements:\n";
+	PrintArray(ArrSum, arrLength);
+
+	return 0;
+}
