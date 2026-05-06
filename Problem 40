@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+//Problem 40 Copy Distinct Numbers in Array.//
+
+void fillarray(int& arrlength, int arr[100])
+{
+    arrlength = 10;
+    arr[0] = 30;
+    arr[1] = 30;
+    arr[2] = 40;
+    arr[3] = 40;
+    arr[4] = 40;
+    arr[5] = 70;
+    arr[6] = 70;
+    arr[7] = 80;
+    arr[8] = 40;
+    arr[9] = 20;
+}
+
+void printarr(int& arrlength, int arr[100])
+{
+    cout << " Array elemts : \n";
+    for (int i = 0; i < arrlength; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+void printdistinknumber(int& arrlength, int arr[100])
+{
+    for (int i = 0; i < arrlength; i++)
+    {
+        if (arr[i] != arr[i + 1])
+        {
+            cout << arr[i] << " ";
+        }
+    }
+    cout << endl;
+}
+int main() {
+
+    
+    int arrlength, arr[100];
+    fillarray(arrlength, arr);
+    printarr(arrlength, arr);
+    cout << " the Distinct number : \n";
+    printdistinknumber(arrlength, arr);
+    
+    
+
+    return 0;
+}
