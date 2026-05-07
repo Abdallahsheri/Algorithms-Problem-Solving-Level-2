@@ -1,0 +1,65 @@
+  #include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+//Problem 44 Count Positive Numbers In Array.//
+
+int RandomNumber(int From, int To)
+{
+    int RandNum = rand() % (To - From + 1) + From;
+    return RandNum;
+}
+
+void FillArrayWithRandomNumbers(int arr[100], int& arrLength)
+{
+    cout << "Please enter the Number Of Elements : " << endl;
+    cin >> arrLength;
+
+    for (int i = 0 ; i < arrLength; i++)
+    {
+        arr[i] = RandomNumber(-100,100);
+    }
+}
+
+void PrintArray(int arr[100], int arrLength)
+{
+    for (int i = 0; i < arrLength; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int PositiveCount(int arr[100], int arrLength)
+{
+    int Counter = 0;
+
+    for (int i = 0; i < arrLength; i++)
+    {
+        if (arr[i] >= 0)
+        {
+            Counter++;
+        }
+    }
+    return Counter;
+}
+
+int main() {
+  
+    srand((unsigned)time(NULL));
+    
+
+    int arr[100];
+    int arrLength;
+
+    FillArrayWithRandomNumbers(arr, arrLength);
+
+    cout << "The Elements In This Array Is : " << endl;
+    PrintArray(arr, arrLength);
+
+    cout << "The Positive Numbers Count Is : ";
+    cout << PositiveCount(arr, arrLength) << endl;
+    return 0;
+}
